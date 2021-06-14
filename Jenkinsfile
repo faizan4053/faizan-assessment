@@ -7,23 +7,23 @@ pipeline{
 		stage("build") {
 			steps {
 				echo 'Build has started'
-				bat 'mvn --version'
-				bat "mvn clean complile"
-				echo "Done cleaning and compiling"
+				sh 'mvn --version'
+				sh 'mvn clean compile'
+				echo 'Build has done successfully'
 			}
 		}
 		stage('test') {
             steps {
                 echo 'Testing source'
-                bat 'mvn test'
-                echo 'Done Testing'
+                sh 'mvn test'
+                echo 'Testing has done successfully'
                 
             }
         }
-        stage('packaging') {
+        stage('deploy') {
             steps {
                 echo 'Packing jar file'
-               	sh 'mvn package -Pprod'
+               	sh 'mvn package'
                	echo 'Done packaging'
             }
         }
